@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Pet Shop | Foods | Toys</title>
+    <link rel="icon" type="image/x-icon" href="/Pet Shop/PC-Logo.svg">
+    <!--font Awesome Link-->
+    <script src="https://kit.fontawesome.com/8cbc109b9d.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        * {
+            font-family: 'Franklin Gothic Medium';
+        }
+
+        h5 {
+            color: #fff;
+        }
+
+        a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /*header*/
+        .mini_header {
+            width: 100%;
+            height: 2rem;
+            font-size: .8rem;
+            background-color: #414141;
+        }
+
+        .mini_header,
+        .signIn_section,
+        .search_bar,
+        .search_bar>div,
+        nav {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /*search bar*/
+        .search_bar {
+            height: 4rem;
+            background-color: #00B1B9;
+            z-index: 9;
+        }
+
+        input[type=search] {
+            width: 45vw;
+            padding: .4rem;
+            box-sizing: border-box;
+            border-radius: 5px;
+            border: none;
+        }
+
+        input[type=search]::placeholder {
+            font-size: .7rem;
+            font-family: 'Arial Narrow';
+        }
+
+        nav {
+            font-size: 1rem;
+            background-color: #007483;
+        }
+
+        .containerForLink {
+            width: 100%;
+            background-color: #007483;
+            gap: .3rem;
+            display: flex;
+            justify-content: space-around;
+            transition: left .5s linear;
+        }
+
+        .bar_icon {
+            display: none;
+            color: #fff;
+        }
+
+        .activeLink {
+            left: 0 !important;
+        }
+
+        /*slider section*/
+        .slider_section {
+            width: 100%;
+            height: 35vw;
+            padding: 0rem 1rem;
+            position: relative;
+            margin-bottom: 50px;
+            margin-top: 50px;
+        }
+
+        .slider_section>img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .slider_section>img.active {
+            opacity: 1;
+        }
+
+        /*Better Range*/
+        .better_range {
+            width: 100%;
+            position: relative;
+        }
+
+        .better_range>h3+div {
+            width: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            gap: 1rem;
+            padding: 0 10vw;
+            box-sizing: border-box;
+        }
+
+        /*dog header*/
+        .dogcat_section {
+            width: 100%;
+            height: auto;
+        }
+
+        .dogcat_header {
+            width: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            gap: .3rem;
+            position: relative;
+        }
+
+        .dogcat_header>div:first-child {
+            width: 100%;
+            height: 3.5rem;
+            display: grid;
+            grid-template-columns: auto auto;
+            background-color: #00B1B9;
+            border-top-left-radius: 10px;
+        }
+
+        .dogcat_header>div:nth-child(2) {
+            width: 80%;
+            height: 3.5rem;
+            display: flex;
+            justify-content: space-evenly;
+            background-color: #00B1B9;
+            border-top-right-radius: 10px;
+        }
+
+        .dogcat_header>div>img {
+            width: 7rem;
+            height: 5rem;
+            position: relative;
+            top: -30px;
+        }
+
+        .dogThingsMainContainer {
+            display: flex;
+            justify-content: space-evenly;
+            background-color: #F5F6F8;
+        }
+
+        .dogThingsContainer {
+            width: 10rem;
+            height: 6rem;
+            text-align: center;
+        }
+
+        .dogThingsContainer>a>img,
+        .catThingsContainer>a>img {
+            width: 4.5rem;
+        }
+
+        .catThingsMainContainer {
+            display: flex;
+            justify-content: space-evenly;
+            background-color: #F5F6F8;
+        }
+
+        .catThingsContainer {
+            width: 10rem;
+            height: 6rem;
+            text-align: center;
+        }
+
+        /*other animals section*/
+        .other_animals_section {
+            width: 100%;
+            padding: 0 10%;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .other_animals_idcard {
+            width: 14rem;
+            height: 4rem;
+            display: flex;
+            flex-direction: row;
+            gap: 2.5rem;
+            color: #007483;
+            background-color: #DFF4F6;
+            border-radius: .5rem;
+        }
+
+        .other_animals_idcard>a>img {
+            width: 7rem;
+            margin-top: -20px;
+        }
+
+        /*better price*/
+        .better_price {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 5rem;
+            position: relative;
+        }
+
+        .better_price::before {
+            content: 'Better Price';
+            font-weight: 100;
+            font-size: 1.3rem;
+            color: #000000a9;
+            position: absolute;
+            left: 0;
+            top: -2rem;
+        }
+
+        .better_price>a>img {
+            width: 25vw;
+        }
+
+        /*top pick section*/
+        .better_price+section {
+            width: 100%;
+            background-color: #F5F6F8;
+            margin-top: 3rem;
+            position: relative;
+        }
+
+        .better_price+section::before {
+            content: 'Top Picks';
+            font-weight: 100;
+            font-size: 1.3rem;
+            color: #000000a9;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .top_pick_products_section {
+            width: 85%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: flex-start;
+            gap: 1rem;
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+            box-sizing: border-box;
+        }
+
+        .productCardForTopPicks {
+            width: 13rem;
+            height: 17rem;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .productCardForTopPicks>h5 {
+            color: #000;
+        }
+
+        .addToCart {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            width: 10rem;
+            height: 2rem;
+            box-sizing: border-box;
+            background-color: #007483;
+            border-radius: .3rem;
+        }
+
+        /*pet health*/
+        .pet_health {
+            width: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .pet_health>a>img {
+            width: 35rem;
+            margin: 0 auto;
+        }
+
+        .pet_health>a:last-child>img {
+            width: 84vw;
+            height: 28vw;
+            margin: 0 auto;
+        }
+
+        /*sign up & social platforms*/
+        .signup_socialplatforms {
+            background-color: #F5F6F8;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 3rem 0;
+            box-sizing: border-box;
+        }
+
+        .sign_up_container,
+        .social_platforms {
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        .sign_up_container>form>input {
+            width: 50%;
+            height: 2rem;
+            border: none;
+            border-bottom-left-radius: .3rem;
+            border-top-left-radius: .3rem;
+            box-shadow: 1px 1px 1px 2px #000000af;
+            padding-inline-start: 1rem;
+        }
+
+        .sign_up_container>form>button {
+            color: #fff;
+            background-color: #00B1B9;
+            border: none;
+            padding: 0 .6rem;
+            height: 2rem;
+            border-bottom-right-radius: .3rem;
+            border-top-right-radius: .3rem;
+            box-shadow: 1px 1px 1px 3px #00000059;
+        }
+
+        .social_platforms>div {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .social_platforms>div>a {
+            color: #000;
+        }
+
+        .social_platforms>div>a>i {
+            font-size: 1.5rem;
+        }
+
+        /*sitemap section*/
+        .sitemap_section {
+            background-color: #00B1B9;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            padding: 4rem 0;
+            box-sizing: border-box;
+        }
+
+        .sitemap_section>div {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 0 auto;
+        }
+
+        .company_info_container,
+        .helpcentre_links_container,
+        .usefullinks_container {
+            position: relative;
+        }
+
+        .company_info_container::before,
+        .helpcentre_links_container::before,
+        .usefullinks_container::before {
+            position: absolute;
+            left: 0;
+            top: -2.5rem;
+            color: #fff;
+            font-size: 1.3rem;
+            font-weight: bolder;
+        }
+
+        .company_info_container::before {
+            content: "Company Info"
+        }
+
+        .helpcentre_links_container::before {
+            content: "Help Centre";
+        }
+
+        .usefullinks_container::before {
+            content: "Useful Links";
+        }
+
+        .payment_section {
+            flex-direction: row !important;
+            position: relative;
+        }
+
+        .payment_section:before {
+            content: 'We Accept';
+            position: absolute;
+            left: 50%;
+            top: 4rem;
+            transform: translateX(-50%);
+        }
+
+        @media (max-width:1200px) {
+            .better_range>h3+div {
+                flex-direction: column;
+                gap: 3rem;
+            }
+
+            .other_animals_section {
+                display: grid;
+                grid-template-columns: auto auto auto;
+            }
+
+            .top_pick_products_section {
+                overflow-x: scroll;
+            }
+
+            .signup_socialplatforms {
+                grid-template-columns: 1fr;
+            }
+
+            .sign_up_container,
+            .social_platforms {
+                width: 90%;
+            }
+        }
+
+        @media (max-width:768px) {
+            .other_animals_section {
+                grid-template-columns: auto auto;
+            }
+
+            .better_price>a>img {
+                width: calc(100vw - 20vw);
+            }
+
+            .sitemap_section {
+                grid-template-columns: 1fr 1fr;
+                text-align: left;
+                gap: 3rem;
+            }
+        }
+
+        @media (max-width:576px) {
+            .mini_header {
+                display: none;
+            }
+
+            header {
+                position: sticky;
+                top: 0;
+                z-index: 9;
+            }
+
+            .search_bar {
+                flex-direction: column;
+                justify-content: center;
+                height: 7rem;
+            }
+
+            .search_bar>div:first-child {
+                flex-direction: column;
+                margin-top: 3rem;
+                z-index: 9;
+            }
+
+            .search_bar>div>img {
+                margin-top: -2.5rem !important;
+            }
+
+            .search_bar>div:first-child>input[type=search] {
+                width: calc(100vw - 20vw);
+                position: relative;
+                top: -1rem;
+            }
+
+            .search_bar>div:last-child {
+                display: none;
+            }
+
+            nav {
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: calc(100vw - 77vw);
+                z-index: 9;
+                background-color: transparent;
+            }
+
+            .containerForLink {
+                flex-direction: column;
+                gap: 1rem;
+                position: absolute;
+                top: 95px;
+                left: -100vw;
+                height: 100vh !important;
+            }
+
+            .bar_icon {
+                display: block;
+                position: absolute;
+                top: 80px;
+                left: 10px;
+            }
+
+            .dogcat_header>div>h3 {
+                font-size: .5rem;
+            }
+
+            .dogcat_header>div>img {
+                width: 3rem;
+                height: 3rem;
+                top: -10px;
+            }
+
+            .dogcat_header>div:first-child,
+            .dogcat_header>div:nth-child(2) {
+                height: 2.5rem;
+            }
+
+            .dogThingsContainer>a>img,
+            .catThingsContainer>a>img {
+                width: 2rem;
+            }
+
+            .dogThingsContainer,
+            .catThingsContainer {
+                height: max-content;
+                font-size: .5rem;
+            }
+
+            .other_animals_section {
+                grid-template-columns: auto;
+            }
+
+            .other_animals_idcard {
+                width: calc(100vw - 20vw);
+                height: max-content;
+                position: relative;
+            }
+
+            .other_animals_idcard>a>img {
+                width: 4rem;
+            }
+
+            .other_animals_idcard>h4 {
+                position: absolute;
+                left: 50%;
+                top: -15px;
+            }
+
+            .pet_health {
+                text-align: center;
+            }
+
+            .pet_health>a>img,
+            .pet_health>a {
+                width: calc(100% - 7%);
+            }
+
+            .sitemap_section {
+                grid-template-columns: 1fr;
+                gap: 5rem;
+            }
+
+            .sitemap_section>div {
+                margin-left: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!--header section-->
+    <header>
+        <div class="mini_header">
+            <h5 style="color: #fff;font-family: 'Arial Narrow'">Free Metro Shipping On Orders Over $49</h5>
+            <div class="signIn_section">
+                <script>
+                    const signIn_section = document.querySelector(".signIn_section");
+
+                    const miniSectionForSignIn = [
+                        {
+                            title: "Deliver To NSW",
+                            href: "https://www.petcircle.com.au/sign-in",
+                        },
+                        {
+                            title: "Sign In",
+                            href: "https://www.petcircle.com.au/sign-in",
+                        },
+                        {
+                            title: "Create Account",
+                            href: "https://www.petcircle.com.au/sign-in",
+                        },
+                        {
+                            title: "$0.00",
+                            href: "https://www.petcircle.com.au/sign-in",
+                        },
+                    ]
+                    for (let i = 0; i < miniSectionForSignIn.length; i++) {
+                        let miniSectionsForSignIn = document.createElement("div");
+
+                        let linkForMiniSectionsForSignIn = document.createElement("a");
+
+                        linkForMiniSectionsForSignIn.innerHTML = miniSectionForSignIn[i].title;
+
+                        linkForMiniSectionsForSignIn.href = miniSectionForSignIn[i].href;
+
+                        miniSectionsForSignIn.append(linkForMiniSectionsForSignIn);
+
+                        signIn_section.append(miniSectionsForSignIn)
+                    }
+
+                </script>
+            </div>
+        </div>
+
+        <!--search bar section-->
+        <div class="search_bar">
+            <div>
+                <img style="width: 4rem;position: relative;top: -10px;" src="/Pet Shop/PC-Logo.svg">
+                <input type="search" placeholder="Search for eg. brands,flea,litter,shampoo...">
+            </div>
+            <div>
+                <h5>Save 30% on your first Auto Delivery*<br>
+                    <a href="https://www.petcircle.com.au/sign-in">Learn More</a>
+                </h5>
+                <img src="/Pet Shop/auto-delivery-icon.svg">
+            </div>
+        </div>
+
+        <!--nav section-->
+        <nav>
+            <script>
+                const nav = document.querySelector("nav");
+                const listsForNav = [
+                    {
+                        title: "Sale",
+                        href: "https://www.petcircle.com.au/sign-in",
+                    },
+                    {
+                        title: "Dog",
+                        href: "https://www.petcircle.com.au/sign-in",
+                    },
+                    {
+                        title: "Cat",
+                        href: "https://www.petcircle.com.au/sign-in",
+                    },
+                    {
+                        title: "Bird",
+                        href: "https://www.petcircle.com.au/sign-in",
+                    },
+                    {
+                        title: "Other Pets",
+                        href: "https://www.petcircle.com.au/sign-in",
+                    },
+                    {
+                        title: "Brands",
+                        href: "https://www.petcircle.com.au/sign-in",
+                    },
+                    {
+                        title: "Pet Tips",
+                        href: "https://www.petcircle.com.au/sign-in",
+                    },
+                ]
+                const bar_icon = document.createElement("i");
+                bar_icon.className = "fa-solid fa-bars";
+                bar_icon.classList.add("bar_icon");
+
+                const containerForLink = document.createElement("ul");
+                bar_icon.onclick = () => {
+                    containerForLink.classList.toggle("activeLink")
+                }
+
+                containerForLink.classList.add("containerForLink")
+                for (let i = 0; i < listsForNav.length; i++) {
+                    const linkForNav = document.createElement("a");
+
+                    linkForNav.innerHTML = listsForNav[i].title;
+                    linkForNav.href = listsForNav[i].href;
+                    linkForNav.classList.add("linkForNav")
+
+                    containerForLink.append(linkForNav)
+
+                    var firstchild = containerForLink.firstChild;
+                    console.log(firstchild);
+                    firstchild.style.textDecoration = "underline"
+
+                    nav.append(bar_icon, containerForLink);
+                }
+            </script>
+        </nav>
+    </header>
+
+
+    <main>
+        <!--slider section-->
+        <section class="slider_section">
+            <img class="active" src="/Pet Shop/AD30_Carousel_Desktop.webp">
+            <img src="/Pet Shop/barbiecore-hp.gif">
+            <img src="/Pet Shop/PC_BoredomBuster_Carousel_Desktop_3_Comp.gif">
+            <img src="/Pet Shop/PC_DigginDeals_Carousel_desktop_03.gif">
+            <script>
+
+                const slider = document.querySelector('.slider_section');
+                const slides = slider.getElementsByTagName('img');
+
+                // Store the total number of images 
+                const slideCount = slides.length;
+                let activeSlide = 0;
+
+                // To change the images dynamically every  
+                // 5 Secs, use SetInterval() method 
+                setInterval(() => {
+                    slides[activeSlide].classList.remove('active');
+                    activeSlide++;
+                    if (activeSlide === slideCount) {
+                        activeSlide = 0;
+                    }
+                    slides[activeSlide].classList.add('active');
+                }, 3000);
+            </script>
+        </section>
+
+        <!--Better Range-->
+        <section class="better_range">
+            <h3 style="margin-bottom: 3rem;color: #000000a9;font-weight: 100;">Better Range</h3>
+            <div>
+                <div class="dogcat_section">
+                    <div class="dogcat_header">
+                        <div>
+                            <img src="/Pet Shop/dog-header.png">
+                            <h3>Shop Dog</h3>
+                        </div>
+                        <div style="background-color: #BFEAED;">
+                            <img src="/Pet Shop/puppy-header.png">
+                            <h3>Puppy</h3>
+                        </div>
+                    </div>
+
+                    <div class="dogThingsMainContainer">
+                        <script>
+                            const dogThingsMainContainer = document.querySelector(".dogThingsMainContainer")
+                            const dogThings = [
+                                {   //dog food
+                                    title: "Dog Food",
+                                    src: "/Pet Shop/dog-food.png",
+                                    href: "https://www.petcircle.com.au/dog/food",
+                                },
+                                {   //dog treats
+                                    title: "Dog Treats",
+                                    src: "/Pet Shop/dog-treats.png",
+                                    href: "https://www.petcircle.com.au/dog/food",
+                                },
+                                {   //dog toys
+                                    title: "Dog Toys",
+                                    src: "/Pet Shop/dog-toys.png",
+                                    href: "https://www.petcircle.com.au/dog/food",
+                                },
+                                {   //flea worming
+                                    title: "Flea worming",
+                                    src: "/Pet Shop/dog-flea-worming.png",
+                                    href: "https://www.petcircle.com.au/dog/food",
+                                }
+                            ]
+                            for (let i = 0; i < dogThings.length; i++) {
+                                var dogThingsImg = document.createElement("img");
+
+                                dogThingsImg.src = dogThings[i].src;
+                                dogThingsImg.href = dogThings[i].href;
+
+                                var dogThingsLink = document.createElement("a");
+                                dogThingsLink.href = dogThings[i].href;
+                                dogThingsLink.append(dogThingsImg)
+
+                                var dogThingsTitle = document.createElement("h4");
+                                dogThingsTitle.innerHTML = dogThings[i].title;
+
+                                var dogThingsContainer = document.createElement("div");
+                                dogThingsContainer.classList.add("dogThingsContainer")
+
+                                dogThingsContainer.append(dogThingsLink, dogThingsTitle);
+                                dogThingsMainContainer.append(dogThingsContainer);
+                            }
+
+                        </script>
+                    </div>
+                </div>
+                <div class="dogcat_section">
+                    <div class="dogcat_header">
+                        <div>
+                            <img src="/Pet Shop/cat-header.png">
+                            <h3>Shop cat</h3>
+                        </div>
+                        <div style="background-color: #BFEAED;">
+                            <img src="/Pet Shop/kitten-header.png">
+                            <h3>Kitten</h3>
+                        </div>
+                    </div>
+
+
+                    <div class="catThingsMainContainer">
+                        <script>
+                            const catThingsMainContainer = document.querySelector(".catThingsMainContainer")
+                            const catThings = [
+                                {   //cat food
+                                    title: "Cat Food",
+                                    src: "/Pet Shop/cat-food.webp",
+                                    href: "https://www.petcircle.com.au/cat/food",
+                                },
+                                {   //cat treats
+                                    title: "Cat Treats",
+                                    src: "/Pet Shop/cat-toys.png",
+                                    href: "https://www.petcircle.com.au/cat/food",
+                                },
+                                {   //cat treats
+                                    title: "Cat Toys",
+                                    src: "/Pet Shop/cat-treats.webp",
+                                    href: "https://www.petcircle.com.au/cat/food",
+                                },
+                                {   //cat litter
+                                    title: "Litter",
+                                    src: "/Pet Shop/cat-litter.webp",
+                                    href: "https://www.petcircle.com.au/cat/food",
+                                }
+                            ]
+                            for (let i = 0; i < catThings.length; i++) {
+                                var catThingsImg = document.createElement("img");
+
+                                catThingsImg.src = catThings[i].src;
+                                catThingsImg.href = catThings[i].href;
+
+                                var catThingsLink = document.createElement("a");
+                                catThingsLink.href = catThings[i].href;
+                                catThingsLink.append(catThingsImg)
+
+                                var catThingsTitle = document.createElement("h4");
+                                catThingsTitle.innerHTML = catThings[i].title;
+
+                                var catThingsContainer = document.createElement("div");
+                                catThingsContainer.classList.add("catThingsContainer")
+
+                                catThingsContainer.append(catThingsLink, catThingsTitle);
+                                catThingsMainContainer.append(catThingsContainer);
+                            }
+                        </script>
+                    </div>
+                </div>
+        </section>
+
+        <section class="other_animals_section">
+            <!--other animals-->
+            <script>
+                const other_animals_section = document.querySelector(".other_animals_section");
+                const other_animals = [
+                    {
+                        //Fish
+                        title: "Fish",
+                        src: "/Pet Shop/Fish.webp",
+                        href: "https://www.petcircle.com.au/reptile",
+                    },
+                    {
+                        //Bird
+                        title: "Bird",
+                        src: "/Pet Shop/Bird.webp",
+                        href: "https://www.petcircle.com.au/reptile",
+                    },
+                    {
+                        //Reptile
+                        title: "Reptile",
+                        src: "/Pet Shop/Reptile.webp",
+                        href: "https://www.petcircle.com.au/reptile",
+                    },
+                    {
+                        //Smaill Pet
+                        title: "Small Pet",
+                        src: "/Pet Shop/Bunny.png",
+                        href: "https://www.petcircle.com.au/reptile",
+                    },
+                    {
+                        //Horse
+                        title: "Horse",
+                        src: "/Pet Shop/Horse.png",
+                        href: "https://www.petcircle.com.au/reptile",
+                    },
+                ]
+                for (let i = 0; i < other_animals.length; i++) {
+                    var title_other_animals = document.createElement("h4");
+                    title_other_animals.innerHTML = other_animals[i].title;
+
+                    var other_animals_img = document.createElement("img");
+                    other_animals_img.src = other_animals[i].src;
+
+                    var other_animals_link = document.createElement("a");
+                    other_animals_link.href = other_animals[i].href;
+                    other_animals_link.append(other_animals_img);
+
+                    var other_animals_idcard = document.createElement("div");
+                    other_animals_idcard.classList.add("other_animals_idcard")
+                    other_animals_idcard.append(other_animals_link, title_other_animals);
+
+                    other_animals_section.append(other_animals_idcard)
+                }
+            </script>
+        </section>
+
+        <!--better price-->
+        <section class="better_price">
+            <a href="https://www.petcircle.com.au/sale?category=food&pet=cat">
+                <img src="/Pet Shop/3upTile_Tile_1.webp">
+            </a>
+            <a href="https://www.petcircle.com.au/sale?category=food&pet=cat">
+                <img src="/Pet Shop/3upTile_Tile_2.webp">
+            </a>
+            <a href="https://www.petcircle.com.au/sale?category=food&pet=cat">
+                <img src="/Pet Shop/3upTile_Tile_3.webp">
+            </a>
+        </section>
+
+        <!--top picks-->
+        <section>
+            <div class="top_pick_products_section">
+                <script>
+                    const top_pick_products_section = document.querySelector(".top_pick_products_section");
+
+                    const top_pick_products = [
+                        {
+                            //kong ball
+                            title: "Kong Corestrength Ball",
+                            src: "/Pet Shop/kong-corestrength-ball.webp",
+                            href: "https://www.petcircle.com.au/product/kong-squeezz-dental-bone/pst22",
+                            price: "$ 10.99",
+                        },
+                        {
+                            //sofa bed
+                            title: "Sofa Bed",
+                            src: "/Pet Shop/paws-for-life-sofa-bed-grey.webp",
+                            href: "https://www.petcircle.com.au/product/kong-squeezz-dental-bone/pst22",
+                            price: "$ 45.99",
+                        },
+                        {
+                            //weight management can
+                            title: "Weight Management Can",
+                            src: "/Pet Shop/pro-plan-adult-weight-management-cans.webp",
+                            href: "https://www.petcircle.com.au/product/kong-squeezz-dental-bone/pst22",
+                            price: "$ 29.99",
+                        },
+                        {
+                            //simparica puppy
+                            title: "Simparica Puppy",
+                            src: "/Pet Shop/simparica-trio-puppy.webp",
+                            href: "https://www.petcircle.com.au/product/kong-squeezz-dental-bone/pst22",
+                            price: "$ 97.99",
+                        },
+                        {
+                            //veggiedent medium
+                            title: "Veggiedent Package",
+                            src: "/Pet Shop/veggiedent-fr3sh-medium.webp",
+                            href: "https://www.petcircle.com.au/product/kong-squeezz-dental-bone/pst22",
+                            price: "$ 78.99",
+                        },
+                        {
+                            //wet cat food
+                            title: "Savoury Wet Cat Food",
+                            src: "/Pet Shop/wellness-core-tender-cuts-with-chicken-and-salmon-in-savoury-gravy-wet-cat-food.webp",
+                            href: "https://www.petcircle.com.au/product/kong-squeezz-dental-bone/pst22",
+                            price: "$ 63.99",
+                        }
+                    ]
+                    for (let i = 0; i < top_pick_products.length; i++) {
+                        const productCardForTopPicks = document.createElement("div");
+                        productCardForTopPicks.classList.add("productCardForTopPicks")
+
+                        const topPickProductImg = document.createElement("img");
+                        topPickProductImg.src = top_pick_products[i].src;
+                        topPickProductImg.style.width = "6rem";
+
+                        const titleForTopPickProduct = document.createElement("h5");
+                        titleForTopPickProduct.innerHTML = top_pick_products[i].title;
+
+                        const priceForTopPicksProduct = document.createElement("h5");
+                        priceForTopPicksProduct.innerHTML = top_pick_products[i].price;
+
+                        const linkForTopPickProduct = document.createElement("a");
+                        linkForTopPickProduct.href = top_pick_products[i].href;
+                        linkForTopPickProduct.append(topPickProductImg);
+
+                        const addToCart = document.createElement("a");
+                        addToCart.href = top_pick_products[i].href;
+                        addToCart.classList.add("addToCart");
+
+                        const addToCartbutton = document.createElement("p");
+                        addToCartbutton.innerHTML = "Add To Cart";
+                        addToCartbutton.classList.add("addToCartbutton");
+
+                        const buttonIcon = document.createElement("i");
+                        buttonIcon.className = "fa-plus";
+                        buttonIcon.style.display = "block";
+
+                        addToCart.append(buttonIcon, addToCartbutton);
+
+                        productCardForTopPicks.append(titleForTopPickProduct, linkForTopPickProduct, priceForTopPicksProduct, addToCart);
+
+                        top_pick_products_section.append(productCardForTopPicks)
+                    }
+                </script>
+            </div>
+        </section>
+
+        <!--Pet Health-->
+        <section class="pet_health">
+            <a href="https://www.petcircleinsurance.com.au/"><img src="/Pet Shop/PC_Feastival_8_1_PCI (2).webp"></a>
+            <a href="https://www.petcircleinsurance.com.au/"> <img
+                    src="/Pet Shop/PC_Feastival_8_3_VetSquad (2).webp"></a>
+            <a href="https://www.petcircleinsurance.com.au/"> <img
+                    src="/Pet Shop/PC_AD30_Homepage_image_Desktop_1000x420 (1).png"></a>
+        </section>
+
+        <!--Sign Up & Social Platforms-->
+        <section class="signup_socialplatforms">
+            <div class="sign_up_container">
+                <h3>Get The Best Deals</h3>
+                <p>Hear first about our exclusive offers and pet care advice.</p>
+                <form>
+                    <input type="email" pattern="*@gmail.com" placeholder="Email">
+                    <button type="submit">Sign Me Up!</button>
+                </form>
+            </div>
+            <div class="social_platforms">
+                <h3>Let's Be Friend</h3>
+                <p>Join our community of pet lovers.</p>
+                <div>
+                    <a href="https://www.petcircleinsurance.com.au/"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://www.petcircleinsurance.com.au/"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.petcircleinsurance.com.au/"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://www.petcircleinsurance.com.au/"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!--site map section-->
+        <section class="sitemap_section">
+            <script>
+                const sitemap_section = document.querySelector(".sitemap_section");
+                const company_infos = [
+                    {
+                        title: "About Us",
+                        href: "https://www.petcircle.com.au/about-us",
+                    },
+                    {
+                        title: "Community",
+                        href: "https://www.petcircle.com.au/about-us",
+                    },
+                    {
+                        title: "Media",
+                        href: "https://www.petcircle.com.au/about-us",
+                    },
+                    {
+                        title: "Carrers",
+                        href: "https://www.petcircle.com.au/about-us",
+                    },
+                    {
+                        title: "Security And {rivacy}",
+                        href: "https://www.petcircle.com.au/about-us",
+                    },
+                    {
+                        title: "Terms of Use",
+                        href: "https://www.petcircle.com.au/about-us",
+                    },
+                ]
+                const company_info_container = document.createElement("div");
+                company_info_container.classList.add("company_info_container")
+                for (let i = 0; i < company_infos.length; i++) {
+                    var company_infos_links = document.createElement("a");
+                    company_infos_links.innerHTML = company_infos[i].title;
+                    company_infos_links.href = company_infos[i].href;
+
+                    company_info_container.append(company_infos_links);
+                }
+
+                const helpcenter_links = [
+                    {
+                        title: "Contact Us",
+                        href: "https://www.petcircle.com.au/contact-us",
+                    },
+                    {
+                        title: "Shipping",
+                        href: "https://www.petcircle.com.au/contact-us",
+                    },
+                    {
+                        title: "Returns",
+                        href: "https://www.petcircle.com.au/contact-us",
+                    },
+                    {
+                        title: "Product Recalls",
+                        href: "https://www.petcircle.com.au/contact-us",
+                    },
+                    {
+                        title: "Best Price Gurantee",
+                        href: "https://www.petcircle.com.au/contact-us",
+                    },
+                    {
+                        title: "Auto Delivery",
+                        href: "https://www.petcircle.com.au/contact-us",
+                    },
+                    {
+                        title: "FAQ",
+                        href: "https://www.petcircle.com.au/contact-us",
+                    },
+                ]
+                const helpcenter_links_container = document.createElement("div");
+                helpcenter_links_container.classList.add("helpcentre_links_container")
+                for (let i = 0; i < helpcenter_links.length; i++) {
+                    var helpcentre_links = document.createElement("a");
+                    helpcentre_links.innerHTML = helpcenter_links[i].title;
+                    helpcentre_links.href = helpcenter_links[i].href;
+
+                    helpcenter_links_container.append(helpcentre_links);
+                }
+
+                const usefullinks_container = document.createElement("div");
+                usefullinks_container.classList.add("usefullinks_container")
+                const usefullinks = [
+                    {
+                        title: "Find A Dog Grommer In Sydney",
+                        href: "https://www.petcircle.com.au/discover/grooming/sydney",
+                    },
+                    {
+                        title: "Supplier Information",
+                        href: "https://www.petcircle.com.au/discover/grooming/sydney",
+                    },
+                    {
+                        title: "Pet Circle Insurance",
+                        href: "https://www.petcircle.com.au/discover/grooming/sydney",
+                    },
+                ]
+                for (let i = 0; i < usefullinks.length; i++) {
+                    var usefullinks_tag = document.createElement("a");
+                    usefullinks_tag.innerHTML = usefullinks[i].title;
+                    usefullinks_tag.href = usefullinks[i].href;
+
+                    usefullinks_container.append(usefullinks_tag);
+                }
+
+                sitemap_section.append(company_info_container, helpcenter_links_container, usefullinks_container);
+            </script>
+
+            <div class="payment_section">
+                <img src="/Pet Shop/pc-visa.svg">
+                <img src="/Pet Shop/pc-master-card.svg">
+                <img src="/Pet Shop/pc-amex.svg">
+                <img src="/Pet Shop/pc-paypal.svg">
+            </div>
+        </section>
+    </main>
+
+</body>
+
+</html>
